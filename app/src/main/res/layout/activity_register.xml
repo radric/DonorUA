@@ -1,0 +1,4 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/register_container"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    tools:context="ua.andriyantonov.donorua.activities.RegisterActivity" tools:ignore="MergeRootFrame" />

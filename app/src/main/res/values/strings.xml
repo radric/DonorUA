@@ -1,0 +1,83 @@
+<resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
+    <string name="app_name">ДонорUA</string>
+
+    ---- Navigation Drawer ----
+    <string name="drawer_item_recipients">Реципієнти</string>
+    <string name="drawer_item_centers">Де здати кров?</string>
+    <string name="drawer_item_need_to_know">Варто знати</string>
+    <string name="drawer_item_user_info">Мої дані</string>
+
+    ---- Registration Activity ----
+    <string name="title_activity_register">Реєстрація</string>
+    <string name="text_bloodgroup">Група крові</string>
+    <string name="text_rh_factor">Резус фактор</string>
+    <string name="text_city">Місто</string>
+    <string name="text_city_enter">Введіть ваше місто</string>
+    <string name="text_save">Зберегти</string>
+    <string name="text_update">Поновити</string>
+
+    ---- NeedToKnow Activity -----
+    <string name="ntk_menu_1">Як готуватись до здачі крові</string>
+    <string name="ntk_menu_2">Тимчасові протипоказання</string>
+    <string name="ntk_menu_3">Абсолютні протипоказання</string>
+
+    
+    ---- Menu ----
+    <string name="action_share">Поширити</string>
+    <string name="action_settings">Налаштування</string>
+    <string name="action_refresh_datebase">Поновити базу</string>
+    ----
+
+    ---- ActionShareProvider ----
+    <string name="help_to_find">#Терміново потрібен донор <xliff:g id="bloodGroup">%s</xliff:g> для <xliff:g id="recName">%s</xliff:g>! \n
+        Контактна особа: <xliff:g id="person">%s</xliff:g> \n
+        Контактиний телефон: <xliff:g id="phone">%s</xliff:g>\n
+        Де: <xliff:g id="cityAddress">%s</xliff:g>\n
+    </string>
+
+    ---- Donor.ua keys ----
+    <string name="donorua_sign_key">\?sign=</string>
+    <string name="donorua_private_key">xMLCqcs3jWUHEDiT3puE0A==</string>
+    <string name="donorua_public_key">ivbCaKmrWpgz</string>
+
+
+    ---- SharedPreferences keys ----
+    <string name="user_blood_type_key">user_blood_type_key</string>
+    <string name="user_rh_factor_key">user_rh_factor_key</string>
+    <string name="is_logged_key">is_logged_key</string>
+    <string name="user_city_key">user_city_key</string>
+    <string name="user_city_id_key">user_city_id_key</string>
+    <string name="first_start_key">first_start_key</string>
+
+    ---- BloodTypes ----
+    <string name="blood_group_1">0(І)</string>
+    <string name="blood_group_2">A(II)</string>
+    <string name="blood_group_3">В(ІІІ)</string>
+    <string name="blood_group_4">AB(IV)</string>
+    <string name="rh_factor_pos">Rh(+)</string>
+    <string name="rh_factor_neg">Rh(-)</string>
+    
+    ---- SettingsActivity ----
+    <string name="title_activity_settings">Налаштування</string>
+    <string name="pref_notification_label">Сповіщення про оновлення</string>
+    <string name="pref_notification_key">pref_notification_key</string>
+    <string name="pref_notification_def_value">1</string>
+    <string name="pref_notification_send_one_week">Раз на тиждень</string>
+    <string name="pref_notification_send_two_weeks">Раз на два тиждні</string>
+    <string name="pref_notification_send_one_month">Раз на місяць</string>
+    <string name="pref_notification_send_never">Не надсилати</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="title_activity_recipient_detail">Деталі</string>
+
+
+    <string name="sync_account_type">donorua.andriyantonov.ua</string>
+    <string name="content_authority">ua.andriyantonov.donorua</string>
+    <string name="pref_last_notification">last_notification</string>
+    <string name="format_notification">Оновлено дані. В базі <xliff:g id="recipientCount">%s</xliff:g> реципієнтів</string>
+
+    <string name="title_activity_centers_on_map">Донорські центри</string>
+    <string name="title_activity_need_to_know">Варто знати</string>
+    <string name="title_activity_need_to_know_detail">Детальніше</string>
+
+</resources>

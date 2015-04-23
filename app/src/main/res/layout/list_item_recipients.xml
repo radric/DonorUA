@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:background="@drawable/touch_list_item_selector"
+    android:minHeight="?android:attr/listPreferredItemHeight">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingRight="5dp">
+            <TextView
+                android:id="@+id/list_item_recipient_name_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:textSize="21sp"
+                android:textStyle="bold"
+                android:textColor="@color/main_primary_text"
+                android:text="Лавренюк владислав"/>
+            <TextView
+                android:id="@+id/list_item_recipient_center_name_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:textColor="@color/main_ordinary_text"
+                android:text="Київська обласна клінічна лікарня"/>
+            </LinearLayout>
+        <TextView
+            android:id="@+id/list_item_recipient_bloodgroup_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:textSize="17sp"
+            android:textColor="@color/material_drawer_primary_dark"
+            android:text="A(0) Rh+"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/list_item_recipient_center_address_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/main_ordinary_text"
+        android:text="м. Київ, вул. Багговутівська, 1а, корп. 13"/>
+
+
+
+</LinearLayout>

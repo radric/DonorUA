@@ -1,0 +1,45 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NeedToKnowActivity"
+    tools:ignore="MergeRootFrame"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_need_to_know"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        style="@style/DonorUaTheme.ActionBar.Main"
+        android:transitionName="actionBar" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:alpha="0.8"
+        android:background="@drawable/shadow_toolbar"/>
+    <LinearLayout
+        android:paddingTop="-3dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <fragment
+            android:id="@+id/need_to_know_container"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:name="ua.andriyantonov.donorua.fragments.NeedToKnowFragment"
+            tools:context="ua.andriyantonov.donorua.fragments.NeedToKnowFragment"
+            tools:layout="@android:layout/list_content"/>
+
+
+        <FrameLayout
+            android:id="@+id/need_to_know_detail_container"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"/>
+
+    </LinearLayout>
+
+</LinearLayout>

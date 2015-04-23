@@ -1,0 +1,27 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="ua.andriyantonov.donorua.activities.UserInfoActivity"
+    tools:ignore="MergeRootFrame" >
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_user_info"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        style="@style/DonorUaTheme.ActionBar.Main"
+        android:transitionName="actionBar" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:alpha="0.8"
+        android:background="@drawable/shadow_toolbar"/>
+
+    <fragment
+        android:padding="-3dp"
+        android:id="@+id/user_info_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout="@android:layout/expandable_list_content"
+        android:name="ua.andriyantonov.donorua.fragments.UserInfoFragment"/>
+    </LinearLayout>
