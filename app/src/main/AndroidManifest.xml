@@ -38,18 +38,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.SettingsActivity"
-            android:label="@string/title_activity_settings"
-            android:parentActivityName=".activities.RecipientsActivity"
-            android:theme="@style/SettingsTheme" >
+            android:name=".activities.RecipientDetailActivity"
+            android:label="@string/title_activity_recipient_detail"
+            android:parentActivityName=".activities.RecipientsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.RecipientsActivity" />
         </activity>
         <activity
-            android:name=".activities.RecipientDetailActivity"
-            android:label="@string/title_activity_recipient_detail"
-            android:parentActivityName=".activities.RecipientsActivity" >
+            android:name=".activities.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".activities.RecipientsActivity"
+            android:theme="@style/SettingsTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.RecipientsActivity" />
@@ -64,41 +64,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.RecipientsActivity" />
         </activity>
-
-        <provider
-            android:name=".data.DonorProvider"
-            android:authorities="@string/content_authority"
-            android:exported="false"
-            android:syncable="true" />
-
-        <service android:name=".sync.DonorAuthenticatornService" >
-            <intent-filter>
-                <action android:name="android.accounts.AccountAuthenticator" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.accounts.AccountAuthenticator"
-                android:resource="@xml/authenticator" />
-        </service>
-        <service
-            android:name=".sync.DonorSyncService"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.content.SyncAdapter" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.content.SyncAdapter"
-                android:resource="@xml/syncadapter" />
-        </service>
-
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version" />
-        <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="@string/google_maps_key" />
-
         <activity
             android:name=".activities.NeedToKnowActivity"
             android:label="@string/title_activity_need_to_know"
@@ -120,6 +85,39 @@
             android:label="@string/drawer_item_user_info"
             android:theme="@style/MainActivityTheme">
         </activity>
+
+        ==================================
+
+        <provider
+            android:name=".data.DonorProvider"
+            android:authorities="@string/content_authority"
+            android:exported="false"
+            android:syncable="true" />
+
+        <service android:name=".sync.DonorAuthenticatornService" >
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
+        </service>
+        <service
+            android:name=".sync.DonorSyncService"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter" />
+            </intent-filter>
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/syncadapter" />
+        </service>
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="@string/google_maps_key" />
     </application>
 
 </manifest>

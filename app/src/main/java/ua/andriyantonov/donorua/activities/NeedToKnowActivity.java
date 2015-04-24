@@ -22,6 +22,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.Optional;
 import ua.andriyantonov.donorua.R;
+import ua.andriyantonov.donorua.data.Utils;
 import ua.andriyantonov.donorua.fragments.NeedToKnowDetailFragment;
 import ua.andriyantonov.donorua.fragments.NeedToKnowFragment;
 import ua.andriyantonov.donorua.fragments.RecipientDetailFragment;
@@ -66,7 +67,9 @@ public class NeedToKnowActivity extends ActionBarActivity implements NeedToKnowF
         }
     }
 
-
+    /**
+     * Saves items if change orientation
+     */
     @Override
     public void onSaveInstanceState(Bundle bundle){
         bundle.putBoolean(DRAWER_KEY, mDrawerIsOpen);
@@ -77,16 +80,10 @@ public class NeedToKnowActivity extends ActionBarActivity implements NeedToKnowF
     public void onResume(){
         super.onResume();
         initNavDrawer();
-
-        initHeaderTextFont();
+        Utils.initHeaderTextFont(NeedToKnowActivity.this);
     }
 
-    public void initHeaderTextFont(){
-        TextView mHeder = (TextView) findViewById(R.id.heder_textview);
 
-        Typeface tf = Typeface.createFromAsset(getAssets(),"fonts/Kotyhoroshko.ttf");
-        mHeder.setTypeface(tf,Typeface.BOLD);
-    }
 
     /**
      * Initializes and sets the Navigation Drawer
@@ -142,7 +139,7 @@ public class NeedToKnowActivity extends ActionBarActivity implements NeedToKnowF
                                 getSystemService(INPUT_METHOD_SERVICE);
                         imm.hideSoftInputFromInputMethod(NeedToKnowActivity.this.getCurrentFocus().getWindowToken(), 0);
                         mDrawerIsOpen = true;
-                        initHeaderTextFont();
+                        Utils.initHeaderTextFont(NeedToKnowActivity.this);
                     }
 
                     @Override
@@ -158,7 +155,6 @@ public class NeedToKnowActivity extends ActionBarActivity implements NeedToKnowF
 
     @Override
     public void onBackPressed() {
-        // Закрываем Navigation Drawer по нажатию системной кнопки "Назад" если он открыт
         if (mDrawer.isDrawerOpen()) {
             mDrawer.closeDrawer();
         } else {

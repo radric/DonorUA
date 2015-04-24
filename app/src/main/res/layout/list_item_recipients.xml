@@ -30,15 +30,13 @@
                 android:paddingLeft="5dp"
                 android:textSize="21sp"
                 android:textStyle="bold"
-                android:textColor="@color/main_primary_text"
-                android:text="Лавренюк владислав"/>
+                android:textColor="@color/main_primary_text"/>
             <TextView
                 android:id="@+id/list_item_recipient_center_name_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingTop="5dp"
-                android:textColor="@color/main_ordinary_text"
-                android:text="Київська обласна клінічна лікарня"/>
+                android:textColor="@color/main_ordinary_text"/>
             </LinearLayout>
         <TextView
             android:id="@+id/list_item_recipient_bloodgroup_textview"
@@ -46,15 +44,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:textSize="17sp"
-            android:textColor="@color/material_drawer_primary_dark"
-            android:text="A(0) Rh+"/>
+            android:textColor="@color/material_drawer_primary_dark"/>
     </LinearLayout>
     <TextView
         android:id="@+id/list_item_recipient_center_address_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/main_ordinary_text"
-        android:text="м. Київ, вул. Багговутівська, 1а, корп. 13"/>
+        android:textColor="@color/main_ordinary_text"/>
 
 
 

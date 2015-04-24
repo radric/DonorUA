@@ -47,7 +47,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/blood_group_1"
-                        android:textSize="19dp"
+                        android:textSize="19sp"
                         android:textColor="@color/material_drawer_primary_text"
                         android:layout_centerInParent="true"/>
                 </RelativeLayout>
@@ -66,7 +66,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/blood_group_2"
-                        android:textSize="19dp"
+                        android:textSize="19sp"
                         android:textColor="@color/material_drawer_primary_text"
                         android:layout_centerInParent="true"/>
                 </RelativeLayout>
@@ -85,7 +85,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/blood_group_3"
-                        android:textSize="19dp"
+                        android:textSize="19sp"
                         android:textColor="@color/material_drawer_primary_text"
                         android:layout_centerInParent="true"/>
                 </RelativeLayout>
@@ -104,7 +104,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/blood_group_4"
-                        android:textSize="19dp"
+                        android:textSize="19sp"
                         android:textColor="@color/material_drawer_primary_text"
                         android:layout_centerInParent="true"/>
                 </RelativeLayout>
@@ -143,7 +143,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/rh_factor_pos"
-                        android:textSize="19dp"
+                        android:textSize="19sp"
                         android:textColor="@color/material_drawer_primary_text"
                         android:layout_centerInParent="true"/>
                 </RelativeLayout>
@@ -162,7 +162,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/rh_factor_neg"
-                        android:textSize="19dp"
+                        android:textSize="19sp"
                         android:textColor="@color/material_drawer_primary_text"
                         android:layout_centerInParent="true"/>
                 </RelativeLayout>

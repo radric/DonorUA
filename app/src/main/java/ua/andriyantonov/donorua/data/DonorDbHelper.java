@@ -65,7 +65,6 @@ public class DonorDbHelper extends SQLiteOpenHelper {
 
         final String SQL_CREATE_RECIPIENTS_TABLE = " CREATE TABLE " + RecipientsEntry.TABLE_NAME + " (" +
                 RecipientsEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                // the ID of the location entry associated with this weather data
                 RecipientsEntry.COLUMN_RECIPIENT_ID + " INTEGER NOT NULL ," +
                 RecipientsEntry.COLUMN_CENTER_KEY + " INTEGER NOT NULL, " +
                 RecipientsEntry.COLUMN_LAST_NAME + " TEXT NOT NULL, " +

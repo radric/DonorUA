@@ -21,11 +21,16 @@
     <string name="ntk_menu_2">Тимчасові протипоказання</string>
     <string name="ntk_menu_3">Абсолютні протипоказання</string>
 
+    ---- Recipient Detail Activity ----
+    <string name="detail_recipient_disease_text">Діагноз</string>
+    <string name="detail_recipient_contact_person_text">Контактна особа</string>
+    <string name="detail_recipient_contact_phone_text">Контактный телефон</string>
+
     
     ---- Menu ----
     <string name="action_share">Поширити</string>
     <string name="action_settings">Налаштування</string>
-    <string name="action_refresh_datebase">Поновити базу</string>
+    <string name="action_refresh_database">Поновити базу</string>
     ----
 
     ---- ActionShareProvider ----

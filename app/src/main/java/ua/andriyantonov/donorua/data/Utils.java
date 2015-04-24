@@ -1,11 +1,14 @@
 package ua.andriyantonov.donorua.data;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Base64;
+import android.widget.TextView;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -24,7 +27,7 @@ public class Utils {
     public static String sUserCity, sUserCityId;
     public static int sBloodType;
     public static String[] sCitiesArray, sCitiesIdArray, sCentersLong, sCentersLat,
-            sCentersName, sCentersDesc, sCentersAddress, sCentersPhone;
+            sCentersAddress, sCentersPhone;
 
     private static SharedPreferences sShp;
 
@@ -329,29 +332,6 @@ public class Utils {
                c.moveToNext();
            }
 
-           String[] selectionName = new String[]{DonorContract.CentersEntry.COLUMN_CENTER_NAME};
-           c = donorDbHelper.getReadableDatabase().query(DonorContract.CentersEntry.TABLE_NAME,
-                   selectionName,
-                   null, null, null, null, null);
-           c.moveToFirst();
-           mCount = c.getCount();
-           sCentersName = new String[mCount];
-           for (int i = 0; i<mCount ; i++){
-               sCentersName[i] = c.getString(0);
-               c.moveToNext();
-           }
-
-           String[] selectionDesc = new String[]{DonorContract.CentersEntry.COLUMN_DESC};
-           c = donorDbHelper.getReadableDatabase().query(DonorContract.CentersEntry.TABLE_NAME,
-                   selectionDesc,
-                   null, null, null, null, null);
-           c.moveToFirst();
-           mCount = c.getCount();
-           sCentersDesc = new String[mCount];
-           for (int i = 0; i<mCount ; i++){
-               sCentersDesc[i] = c.getString(0);
-               c.moveToNext();
-           }
            String[] selectionAddress = new String[]{DonorContract.CentersEntry.COLUMN_ADDRESS};
            c = donorDbHelper.getReadableDatabase().query(DonorContract.CentersEntry.TABLE_NAME,
                    selectionAddress,
@@ -400,5 +380,14 @@ public class Utils {
             }
         }
         return connection;
+    }
+
+    /**
+     * Initiates custom font for header's textview
+     */
+    public static void initHeaderTextFont(Activity activity){
+        TextView mHeader = (TextView) activity.findViewById(R.id.heder_textview);
+        Typeface tf = Typeface.createFromAsset(activity.getAssets(),"fonts/Kotyhoroshko.ttf");
+        mHeader.setTypeface(tf,Typeface.BOLD);
     }
 }

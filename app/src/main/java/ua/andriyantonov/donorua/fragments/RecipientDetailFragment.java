@@ -103,7 +103,12 @@ public class RecipientDetailFragment extends Fragment implements LoaderManager.L
     @InjectView(R.id.detail_recipient_contact_person_textview) TextView mRecContactPerson;
     @InjectView(R.id.detail_recipient_contact_phone_textview) TextView mRecContactPhone;
     @InjectView(R.id.detail_recipient_description_textview) TextView mRecDescription;
+    @InjectView(R.id.detail_recipient_disease_text_textview) TextView mDiseaseText;
+    @InjectView(R.id.detail_recipient_contact_person_text_textview) TextView mContPersonText;
+    @InjectView(R.id.detail_recipient_contact_phone_text_textview) TextView mContPhoneText;
     @InjectView(R.id.detail_recipient_imageview) ImageView mRecImage;
+    @InjectView(R.id.call_button) ImageView mCallBtn;
+    @InjectView(R.id.show_center_on_map) ImageView mMapBtn;
     @InjectView(R.id.loadingPhoto_progressbar) ProgressBar mProgressBar;
     @InjectView(R.id.recipient_detail_main_layout) ScrollView sRecipientDetailLayout;
 
@@ -166,7 +171,7 @@ public class RecipientDetailFragment extends Fragment implements LoaderManager.L
      * Calls contactPhone in case callButton was pressed
      */
     @OnClick(R.id.call_button)
-    public void Call(ImageButton imageButton){
+    public void Call(ImageButton mCallBtn){
         if (mPhoneStr != null){
             dialogToCall();
         }
@@ -176,7 +181,7 @@ public class RecipientDetailFragment extends Fragment implements LoaderManager.L
      * Shows center location on map
      */
     @OnClick(R.id.show_center_on_map)
-    public void ShowCenterOnMap(ImageButton imageButton){
+    public void ShowCenterOnMap(ImageButton mMapBtn){
         if (mCenterLong != null && mCenterLat != null && mCenterNameStr != null){
            dialogShowCenterOnMap();
         }
@@ -305,11 +310,6 @@ public class RecipientDetailFragment extends Fragment implements LoaderManager.L
             String firstNameStr = cursor.getString(COL_REC_FIRST_NAME);
             mRecName.setText(lastNameStr + " " + firstNameStr);
 
-            String birthDay = cursor.getString(COL_REC_BIRTH_DAY);
-
-            //TODO потім якось десь колись виправити конвертер віку
-//            mRecAge.setText(Utils.getCorrectAgeFormat(birthDay));
-
             String diseaseStr = cursor.getString(COL_REC_DISEASE);
             mRecDisease.setText(diseaseStr);
 
@@ -327,9 +327,11 @@ public class RecipientDetailFragment extends Fragment implements LoaderManager.L
 
             String personStr = cursor.getString(COL_REC_CONT_PERSON);
             mRecContactPerson.setText(personStr);
+            mContPersonText.setText(getString(R.string.detail_recipient_contact_person_text));
 
             mPhoneStr = cursor.getString(COL_REC_CONT_PHONE);
             mRecContactPhone.setText(mPhoneStr);
+            mContPhoneText.setText(getString(R.string.common_open_on_phone));
 
             String descriptionStr = cursor.getString(COL_REC_DESC);
             mRecDescription.setText(descriptionStr);
@@ -356,6 +358,7 @@ public class RecipientDetailFragment extends Fragment implements LoaderManager.L
                             }
                             if (fragmentLoaded){
                                 mProgressBar.setVisibility(View.INVISIBLE);
+                                mRecImage.setBackgroundResource(R.drawable.photo_border);
                             }
                         }
                         @Override
@@ -365,6 +368,8 @@ public class RecipientDetailFragment extends Fragment implements LoaderManager.L
                             }
                         }
                     });
+            mCallBtn.setImageResource(R.mipmap.ic_call);
+            mMapBtn.setImageResource(R.mipmap.ic_show_center_on_map);
 
             mShareStr = String.format(getActivity().getString(R.string.help_to_find),
                     mRecBloodGroup.getText(),
