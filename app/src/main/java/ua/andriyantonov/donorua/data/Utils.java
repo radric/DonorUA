@@ -2,19 +2,34 @@ package ua.andriyantonov.donorua.data;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.v7.widget.Toolbar;
 import android.util.Base64;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.TextView;
+
+import com.mikepenz.iconics.typeface.FontAwesome;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import ua.andriyantonov.donorua.R;
+import ua.andriyantonov.donorua.activities.CentersOnMapActivity;
+import ua.andriyantonov.donorua.activities.NeedToKnowActivity;
+import ua.andriyantonov.donorua.activities.RecipientsActivity;
+import ua.andriyantonov.donorua.activities.UserInfoActivity;
 
 /**
  * Created by andriy on 28.03.15.
@@ -361,11 +376,19 @@ public class Utils {
     }
 
     public static String getMobileNum(String mobile){
-        mobile = mobile.replace(" ","");
-        mobile = mobile.replace("-","");
-        mobile = mobile.replace("(","");
-        mobile = "tel:" + mobile.replace(")","");
-        return mobile;
+        if (mobile.contains(" ")){
+            mobile = mobile.replace(" ","");
+        }
+        if (mobile.contains("-")){
+            mobile = mobile.replace("-","");
+        }
+        if (mobile.contains("(")){
+            mobile = mobile.replace("(","");
+        }
+        if (mobile.contains(")")){
+            mobile = mobile.replace(")","");
+        }
+        return "tel:" + mobile;
     }
 
     public static boolean checkConnection(Context context){
@@ -390,4 +413,5 @@ public class Utils {
         Typeface tf = Typeface.createFromAsset(activity.getAssets(),"fonts/Kotyhoroshko.ttf");
         mHeader.setTypeface(tf,Typeface.BOLD);
     }
+
 }

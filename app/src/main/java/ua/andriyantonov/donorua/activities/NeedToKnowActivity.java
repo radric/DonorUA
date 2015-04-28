@@ -44,9 +44,11 @@ public class NeedToKnowActivity extends ActionBarActivity implements NeedToKnowF
         setContentView(R.layout.activity_need_to_know);
         ButterKnife.inject(this);
 
-        initNavDrawer();
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        initNavDrawer();
+        Utils.initHeaderTextFont(NeedToKnowActivity.this);
 
         if (savedInstanceState != null && savedInstanceState.containsKey(DRAWER_KEY)){
             mDrawerIsOpen = savedInstanceState.getBoolean(DRAWER_KEY);
@@ -75,15 +77,6 @@ public class NeedToKnowActivity extends ActionBarActivity implements NeedToKnowF
         bundle.putBoolean(DRAWER_KEY, mDrawerIsOpen);
         super.onSaveInstanceState(bundle);
     }
-
-    @Override
-    public void onResume(){
-        super.onResume();
-        initNavDrawer();
-        Utils.initHeaderTextFont(NeedToKnowActivity.this);
-    }
-
-
 
     /**
      * Initializes and sets the Navigation Drawer
@@ -139,7 +132,6 @@ public class NeedToKnowActivity extends ActionBarActivity implements NeedToKnowF
                                 getSystemService(INPUT_METHOD_SERVICE);
                         imm.hideSoftInputFromInputMethod(NeedToKnowActivity.this.getCurrentFocus().getWindowToken(), 0);
                         mDrawerIsOpen = true;
-                        Utils.initHeaderTextFont(NeedToKnowActivity.this);
                     }
 
                     @Override

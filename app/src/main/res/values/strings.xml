@@ -30,7 +30,6 @@
     ---- Menu ----
     <string name="action_share">Поширити</string>
     <string name="action_settings">Налаштування</string>
-    <string name="action_refresh_database">Поновити базу</string>
     ----
 
     ---- ActionShareProvider ----

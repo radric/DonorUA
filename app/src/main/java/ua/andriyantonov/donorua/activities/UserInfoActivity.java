@@ -26,6 +26,7 @@ import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import ua.andriyantonov.donorua.R;
+import ua.andriyantonov.donorua.data.Utils;
 import ua.andriyantonov.donorua.fragments.UserInfoFragment;
 
 public class UserInfoActivity extends ActionBarActivity {
@@ -41,8 +42,12 @@ public class UserInfoActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
         ButterKnife.inject(this);
-        initNavDrawer();
 
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        initNavDrawer();
+        Utils.initHeaderTextFont(this);
 
         if (savedInstanceState != null && savedInstanceState.containsKey(DRAWER_KEY)){
             mDrawerIsOpen = savedInstanceState.getBoolean(DRAWER_KEY);
@@ -54,20 +59,6 @@ public class UserInfoActivity extends ActionBarActivity {
     public void onSaveInstanceState(Bundle bundle){
         bundle.putBoolean(DRAWER_KEY, mDrawerIsOpen);
         super.onSaveInstanceState(bundle);
-    }
-
-    @Override
-    public void onResume(){
-        super.onResume();
-        initNavDrawer();
-        initHeaderTextFont();
-    }
-
-    public void initHeaderTextFont(){
-        TextView mHeder = (TextView) findViewById(R.id.heder_textview);
-
-        Typeface tf = Typeface.createFromAsset(getAssets(),"fonts/Kotyhoroshko.ttf");
-        mHeder.setTypeface(tf,Typeface.BOLD);
     }
 
     /**
@@ -123,7 +114,6 @@ public class UserInfoActivity extends ActionBarActivity {
                                 getSystemService(INPUT_METHOD_SERVICE);
                         imm.hideSoftInputFromInputMethod(UserInfoActivity.this.getCurrentFocus().getWindowToken(), 0);
                         mDrawerIsOpen = true;
-                        initHeaderTextFont();
                     }
 
                     @Override
@@ -135,7 +125,6 @@ public class UserInfoActivity extends ActionBarActivity {
                 .withDrawerWidthRes(R.dimen.nav_drawer_width)
                 .build();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

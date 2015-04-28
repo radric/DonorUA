@@ -47,10 +47,12 @@ public class RecipientsActivity extends ActionBarActivity implements RecipientsF
         super.onCreate(savedInstanceState);
         checkIsLogged();
 
-        if (Utils.sIsLogged){
+        if (!Utils.sIsLogged){
+        } else {
             setContentView(R.layout.activity_recipients);
             ButterKnife.inject(this);
             initNavDrawer();
+            Utils.initHeaderTextFont(this);
 
             prepareMapView();
             setSupportActionBar(mToolbar);
@@ -64,7 +66,6 @@ public class RecipientsActivity extends ActionBarActivity implements RecipientsF
                 mDrawerIsOpen = savedInstanceState.getBoolean(DRAWER_KEY);
                 if (mDrawerIsOpen){mDrawer.openDrawer();}
             }
-
             if (findViewById(R.id.recipient_detail_container) != null){
                 mTwoPane = true;
 
@@ -89,16 +90,7 @@ public class RecipientsActivity extends ActionBarActivity implements RecipientsF
     @Override
     public void onResume(){
         super.onResume();
-        initNavDrawer();
         checkUserInfoChanges();
-        initHeaderTextFont();
-    }
-
-    public void initHeaderTextFont(){
-        TextView mHeder = (TextView) findViewById(R.id.heder_textview);
-
-        Typeface tf = Typeface.createFromAsset(getAssets(),"fonts/Kotyhoroshko.ttf");
-        mHeder.setTypeface(tf,Typeface.BOLD);
     }
 
     public void checkUserInfoChanges(){
@@ -173,7 +165,6 @@ public class RecipientsActivity extends ActionBarActivity implements RecipientsF
                                 getSystemService(INPUT_METHOD_SERVICE);
                         imm.hideSoftInputFromInputMethod(RecipientsActivity.this.getCurrentFocus().getWindowToken(), 0);
                         mDrawerIsOpen = true;
-                        initHeaderTextFont();
                     }
 
                     @Override
@@ -197,8 +188,6 @@ public class RecipientsActivity extends ActionBarActivity implements RecipientsF
         }
     }
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_recipients_activity, menu);
@@ -220,7 +209,6 @@ public class RecipientsActivity extends ActionBarActivity implements RecipientsF
 
     @Override
     public void onBackPressed() {
-        // Закрываем Navigation Drawer по нажатию системной кнопки "Назад" если он открыт
         if (mDrawer.isDrawerOpen()) {
             mDrawer.closeDrawer();
         } else {

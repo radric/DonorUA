@@ -72,22 +72,6 @@ public class RecipientsFragment extends Fragment implements LoaderManager.Loader
         super.onResume();
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_recipients_fragment, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_refresh) {
-            updateRecipientList();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-
-
     private void updateRecipientList() {
         DonorSyncAdapter.syncImmediately(getActivity());
     }

@@ -70,19 +70,12 @@ public class CentersOnMapActivity extends FragmentActivity {
                 if (mFirstSetUp){
                     setUpMap();
                     mFirstSetUp = false;
-
-                    Runnable getCentersData = new Runnable() {
-                        @Override
-                        public void run() {
-                            Utils.getCentersData(getApplicationContext());
-                        }
-                    };
-                    runOnUiThread(getCentersData);
+                    Utils.getCentersData(getApplicationContext());
                     }
                 mMap.getUiSettings().setMyLocationButtonEnabled(true);
                 mMap.getUiSettings().setCompassEnabled(true);
                 mMap.getUiSettings().setZoomControlsEnabled(true);
-                mHandler.postDelayed(runnable, 500);
+                setMarkers();
             }
         }
     }
@@ -102,30 +95,22 @@ public class CentersOnMapActivity extends FragmentActivity {
     /**
      * Prepare information for every center and sets markers on the map
      */
-    private Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            mCentersPhone = Utils.sCentersPhone;
-            mCentersLat = Utils.sCentersLat;
-            mCentersLong = Utils.sCentersLong;
-            mCentersAddress = Utils.sCentersAddress;
-
-            if (mCentersPhone == null || mCentersLat == null || mCentersLong == null
-                    || mCentersAddress == null) {
-                mHandler.postDelayed(runnable, 500);
-            } else if (mCentersPhone.length < 0 || mCentersLat.length < 0 ||
-                    mCentersLong.length <0 || mCentersAddress.length < 0){
-                mHandler.postDelayed(runnable, 100);
-            } else {
-                for (int i = 0; i < mCentersLong.length; i++){
-                    mMap.addMarker(new MarkerOptions()
-                            .position(new LatLng(
-                                    Double.parseDouble(mCentersLat[i]),
-                                    Double.parseDouble(mCentersLong[i])))
-                            .title(mCentersAddress[i]))
-                            .setSnippet("тел: " + mCentersPhone[i]);
-                    }
+    private void setMarkers(){
+        mCentersPhone = Utils.sCentersPhone;
+        mCentersLat = Utils.sCentersLat;
+        mCentersLong = Utils.sCentersLong;
+        mCentersAddress = Utils.sCentersAddress;
+        if (mCentersPhone == null || mCentersLat == null || mCentersLong == null
+                || mCentersAddress == null) {
+        } else {
+            for (int i = 0; i < mCentersLong.length; i++){
+                mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(
+                                Double.parseDouble(mCentersLat[i]),
+                                Double.parseDouble(mCentersLong[i])))
+                        .title(mCentersAddress[i]))
+                        .setSnippet("тел: " + mCentersPhone[i]);
                 }
             }
-        };
+        }
 }

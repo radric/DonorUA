@@ -73,12 +73,12 @@ public class UserInfoFragment extends Fragment implements View.OnClickListener {
         return rootView;
     }
 
-//    @Override
-//    public void onResume(){
-//        ((UserInfoActivity) getActivity()).getSupportActionBar().
-//                setTitle(getString(R.string.drawer_item_user_info));
-//        super.onResume();
-//    }
+    @Override
+    public void onResume(){
+        ((UserInfoActivity) getActivity()).getSupportActionBar().
+                setTitle(getString(R.string.drawer_item_user_info));
+        super.onResume();
+    }
 
     @Override
     public void onSaveInstanceState(Bundle bundle){

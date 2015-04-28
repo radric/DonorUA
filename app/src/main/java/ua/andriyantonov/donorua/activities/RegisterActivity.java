@@ -28,7 +28,6 @@ public class RegisterActivity extends ActionBarActivity {
      */
     @Override
     public void onBackPressed(){
-        moveTaskToBack(false);
         finish();
     }
 }
