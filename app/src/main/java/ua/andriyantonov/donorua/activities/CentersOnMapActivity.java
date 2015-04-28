@@ -1,8 +1,15 @@
 package ua.andriyantonov.donorua.activities;
 
-import android.os.Handler;
-import android.support.v4.app.FragmentActivity;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -10,24 +17,28 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.mikepenz.iconics.typeface.FontAwesome;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 
 import butterknife.ButterKnife;
+import butterknife.InjectView;
 import ua.andriyantonov.donorua.R;
 import ua.andriyantonov.donorua.data.Utils;
 
 
-public class CentersOnMapActivity extends FragmentActivity {
+public class CentersOnMapActivity extends ActionBarActivity {
 
+    private Drawer.Result mDrawer;
     private GoogleMap mMap;
-    private Handler mHandler = new Handler();
-    private CameraPosition mCameraPosition;
-    private CameraUpdate mCameraUpdate;
-    private Boolean mFirstSetUp = true;
-    private String[] mCentersPhone, mCentersLat, mCentersLong, mCentersAddress;
+    private Boolean mFirstSetUp = true, mDrawerIsOpen;
     private static final String SELECTED_KEY = "firstSetUpStatus";
+    private static final String DRAWER_KEY = "drawer key";
 
+    @InjectView(R.id.toolbar_map) Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,15 +46,32 @@ public class CentersOnMapActivity extends FragmentActivity {
         setContentView(R.layout.activity_centers_on_map);
         ButterKnife.inject(this);
 
-        if (savedInstanceState != null && savedInstanceState.containsKey(SELECTED_KEY)){
-            mFirstSetUp = savedInstanceState.getBoolean(SELECTED_KEY);
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        initNavDrawer();
+        Utils.initHeaderTextFont(this);
+
+        if (savedInstanceState != null){
+            if (savedInstanceState.containsKey(SELECTED_KEY)){
+                mFirstSetUp = savedInstanceState.getBoolean(SELECTED_KEY);
+            }
+            if (savedInstanceState.containsKey(DRAWER_KEY)){
+                mDrawerIsOpen = savedInstanceState.getBoolean(DRAWER_KEY);
+                if (mDrawerIsOpen){mDrawer.openDrawer();}
+            }
         }
         setUpMapIfNeeded();
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
+        if (mFirstSetUp != null){
             outState.putBoolean(SELECTED_KEY, mFirstSetUp);
+        }
+        if (mDrawerIsOpen != null){
+            outState.putBoolean(DRAWER_KEY, mDrawerIsOpen);
+        }
         super.onSaveInstanceState(outState);
     }
 
@@ -84,11 +112,11 @@ public class CentersOnMapActivity extends FragmentActivity {
      * Setups map in the center of Ukraine
      */
     private void setUpMap() {
-        mCameraPosition = new CameraPosition.Builder()
+        CameraPosition mCameraPosition = new CameraPosition.Builder()
                 .target(new LatLng(49.0139, 31.2858))
                 .zoom(5)
                 .build();
-        mCameraUpdate = CameraUpdateFactory.newCameraPosition(mCameraPosition);
+        CameraUpdate mCameraUpdate = CameraUpdateFactory.newCameraPosition(mCameraPosition);
         mMap.animateCamera(mCameraUpdate);
     }
 
@@ -96,10 +124,10 @@ public class CentersOnMapActivity extends FragmentActivity {
      * Prepare information for every center and sets markers on the map
      */
     private void setMarkers(){
-        mCentersPhone = Utils.sCentersPhone;
-        mCentersLat = Utils.sCentersLat;
-        mCentersLong = Utils.sCentersLong;
-        mCentersAddress = Utils.sCentersAddress;
+        String[] mCentersPhone = Utils.sCentersPhone;
+        String[] mCentersLat = Utils.sCentersLat;
+        String[] mCentersLong = Utils.sCentersLong;
+        String[] mCentersAddress = Utils.sCentersAddress;
         if (mCentersPhone == null || mCentersLat == null || mCentersLong == null
                 || mCentersAddress == null) {
         } else {
@@ -112,5 +140,93 @@ public class CentersOnMapActivity extends FragmentActivity {
                         .setSnippet("тел: " + mCentersPhone[i]);
                 }
             }
+
         }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        mDrawer.setSelection(1);
+    }
+
+    /**
+     * Initializes and sets the Navigation Drawer
+     */
+    private void initNavDrawer(){
+        mDrawer = new Drawer()
+                .withActivity(this)
+                .withToolbar(mToolbar)
+                .withActionBarDrawerToggle(true)
+                .withHeader(R.layout.header)
+                .addDrawerItems(
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_recipients).withIconColor(Color.WHITE).withTintSelectedIcon(true)
+                                .withIcon(FontAwesome.Icon.faw_users).withIdentifier(1),
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_centers).withIconColor(Color.WHITE).withTintSelectedIcon(true).
+                                withIcon(FontAwesome.Icon.faw_map_marker).withIdentifier(2),
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_need_to_know).withIconColor(Color.WHITE).withTintSelectedIcon(true).
+                                withIcon(FontAwesome.Icon.faw_bookmark).withIdentifier(3),
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_user_info).withIconColor(Color.WHITE).withTintSelectedIcon(true).
+                                withIcon(FontAwesome.Icon.faw_user).withIdentifier(4)
+                )
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int position,
+                                            long id, IDrawerItem iDrawerItem) {
+                        if (iDrawerItem != null) {
+                            Intent intent = null;
+                            if (iDrawerItem.getIdentifier() == 1) {
+                                intent = new Intent(CentersOnMapActivity.this, RecipientsActivity.class);
+                                CentersOnMapActivity.this.startActivity(intent);
+                            }
+                            if (iDrawerItem.getIdentifier() == 2) {
+                                mDrawer.closeDrawer();
+                            }
+                            if (iDrawerItem.getIdentifier() == 3) {
+                                intent = new Intent(CentersOnMapActivity.this, NeedToKnowActivity.class);
+                                CentersOnMapActivity.this.startActivity(intent);
+                            }
+                            if (iDrawerItem.getIdentifier() == 4) {
+                                intent = new Intent(CentersOnMapActivity.this, UserInfoActivity.class);
+                                CentersOnMapActivity.this.startActivity(intent);
+                            }
+                        }
+                        if (iDrawerItem instanceof Nameable) {
+                            setTitle(CentersOnMapActivity.this.getString(((Nameable) iDrawerItem).getNameRes()));
+                        }
+                    }
+                })
+                .withOnDrawerListener(new Drawer.OnDrawerListener() {
+                    @Override
+                    public void onDrawerOpened(View view) {
+                        InputMethodManager imm = (InputMethodManager) CentersOnMapActivity.this.
+                                getSystemService(INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromInputMethod(
+                                CentersOnMapActivity.this.getCurrentFocus().getWindowToken(), 0);
+                        mDrawerIsOpen = true;
+                    }
+                    @Override
+                    public void onDrawerClosed(View view) {
+                        mDrawerIsOpen = false;
+                    }
+                })
+                .withSelectedItem(1)
+                .withDrawerWidthRes(R.dimen.nav_drawer_width)
+                .build();
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_recipients_activity, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

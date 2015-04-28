@@ -16,6 +16,17 @@
     <string name="text_save">Зберегти</string>
     <string name="text_update">Поновити</string>
 
+    ---- Recipients Activity ----
+    <string name="no_needed_donors_mes">
+        Нащастя у Вашому місті зараз немає потреби у Вашій группі крові! \n
+        База реципієнтів постійно оновлюється, ми повідомиво Вас про оновлення.
+    </string>
+    <string name="no_needed_donors_thanks">
+        Дякуємо Вам за добру справу!
+    </string>
+
+
+
     ---- NeedToKnow Activity -----
     <string name="ntk_menu_1">Як готуватись до здачі крові</string>
     <string name="ntk_menu_2">Тимчасові протипоказання</string>
@@ -26,7 +37,6 @@
     <string name="detail_recipient_contact_person_text">Контактна особа</string>
     <string name="detail_recipient_contact_phone_text">Контактный телефон</string>
 
-    
     ---- Menu ----
     <string name="action_share">Поширити</string>
     <string name="action_settings">Налаштування</string>
@@ -44,6 +54,10 @@
     <string name="donorua_private_key">xMLCqcs3jWUHEDiT3puE0A==</string>
     <string name="donorua_public_key">ivbCaKmrWpgz</string>
 
+    ---- JSON query ----
+    <string name="recipientsData">recipients</string>
+    <string name="citiesData">cities</string>
+    <string name="centersData">centers</string>
 
     ---- SharedPreferences keys ----
     <string name="user_blood_type_key">user_blood_type_key</string>
@@ -83,5 +97,7 @@
     <string name="title_activity_centers_on_map">Донорські центри</string>
     <string name="title_activity_need_to_know">Варто знати</string>
     <string name="title_activity_need_to_know_detail">Детальніше</string>
+    <string name="title_activity_centers">CentersActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

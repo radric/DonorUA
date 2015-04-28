@@ -1,21 +1,15 @@
 package ua.andriyantonov.donorua.activities;
 
 import android.content.Intent;
-import android.graphics.Typeface;
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.os.Build;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.TextView;
 
 import com.mikepenz.iconics.typeface.FontAwesome;
 import com.mikepenz.materialdrawer.Drawer;
@@ -27,13 +21,12 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import ua.andriyantonov.donorua.R;
 import ua.andriyantonov.donorua.data.Utils;
-import ua.andriyantonov.donorua.fragments.UserInfoFragment;
 
 public class UserInfoActivity extends ActionBarActivity {
 
     private static final String DRAWER_KEY = "drawer key";
     private Drawer.Result mDrawer;
-    private boolean mDrawerIsOpen;
+    private Boolean mDrawerIsOpen;
 
     @InjectView(R.id.toolbar_user_info) Toolbar mToolbar;
 
@@ -57,7 +50,10 @@ public class UserInfoActivity extends ActionBarActivity {
 
     @Override
     public void onSaveInstanceState(Bundle bundle){
-        bundle.putBoolean(DRAWER_KEY, mDrawerIsOpen);
+        if (mDrawerIsOpen != null){
+            bundle.putBoolean(DRAWER_KEY, mDrawerIsOpen);
+        }
+
         super.onSaveInstanceState(bundle);
     }
 
@@ -71,13 +67,13 @@ public class UserInfoActivity extends ActionBarActivity {
                 .withActionBarDrawerToggle(true)
                 .withHeader(R.layout.header)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName(R.string.drawer_item_recipients).
-                                withIcon(FontAwesome.Icon.faw_users).withIdentifier(1),
-                        new PrimaryDrawerItem().withName(R.string.drawer_item_centers).
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_recipients).withIconColor(Color.WHITE).withTintSelectedIcon(true)
+                                .withIcon(FontAwesome.Icon.faw_users).withIdentifier(1),
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_centers).withIconColor(Color.WHITE).withTintSelectedIcon(true).
                                 withIcon(FontAwesome.Icon.faw_map_marker).withIdentifier(2),
-                        new PrimaryDrawerItem().withName(R.string.drawer_item_need_to_know).
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_need_to_know).withIconColor(Color.WHITE).withTintSelectedIcon(true).
                                 withIcon(FontAwesome.Icon.faw_bookmark).withIdentifier(3),
-                        new PrimaryDrawerItem().withName(R.string.drawer_item_user_info).
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_user_info).withIconColor(Color.WHITE).withTintSelectedIcon(true).
                                 withIcon(FontAwesome.Icon.faw_user).withIdentifier(4)
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -124,6 +120,12 @@ public class UserInfoActivity extends ActionBarActivity {
                 .withSelectedItem(3)
                 .withDrawerWidthRes(R.dimen.nav_drawer_width)
                 .build();
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        mDrawer.setSelection(3);
     }
 
     @Override

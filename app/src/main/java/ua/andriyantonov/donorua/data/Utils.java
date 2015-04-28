@@ -370,7 +370,6 @@ public class Utils {
                sCentersPhone[i] = c.getString(0);
                c.moveToNext();
            }
-
            c.close();
        }
     }

@@ -1,6 +1,7 @@
 package ua.andriyantonov.donorua.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -88,13 +89,13 @@ public class NeedToKnowActivity extends ActionBarActivity implements NeedToKnowF
                 .withActionBarDrawerToggle(true)
                 .withHeader(R.layout.header)
                 .addDrawerItems(
-                        new PrimaryDrawerItem().withName(R.string.drawer_item_recipients).
-                                withIcon(FontAwesome.Icon.faw_users).withIdentifier(1),
-                        new PrimaryDrawerItem().withName(R.string.drawer_item_centers).
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_recipients).withIconColor(Color.WHITE).withTintSelectedIcon(true)
+                                .withIcon(FontAwesome.Icon.faw_users).withIdentifier(1),
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_centers).withIconColor(Color.WHITE).withTintSelectedIcon(true).
                                 withIcon(FontAwesome.Icon.faw_map_marker).withIdentifier(2),
-                        new PrimaryDrawerItem().withName(R.string.drawer_item_need_to_know).
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_need_to_know).withIconColor(Color.WHITE).withTintSelectedIcon(true).
                                 withIcon(FontAwesome.Icon.faw_bookmark).withIdentifier(3),
-                        new PrimaryDrawerItem().withName(R.string.drawer_item_user_info).
+                        new PrimaryDrawerItem().withName(R.string.drawer_item_user_info).withIconColor(Color.WHITE).withTintSelectedIcon(true).
                                 withIcon(FontAwesome.Icon.faw_user).withIdentifier(4)
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -142,6 +143,12 @@ public class NeedToKnowActivity extends ActionBarActivity implements NeedToKnowF
                 .withSelectedItem(2)
                 .withDrawerWidthRes(R.dimen.nav_drawer_width)
                 .build();
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        mDrawer.setSelection(2);
     }
 
 

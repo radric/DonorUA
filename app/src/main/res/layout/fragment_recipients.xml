@@ -1,7 +1,9 @@
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
 
     <ListView
         android:id="@+id/listview_recipients"
@@ -9,4 +11,31 @@
         android:layout_height="wrap_content"
         style="@style/ListStyle"/>
 
-</FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/no_needed_ll"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:orientation="vertical"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:textColor="@color/main_primary_text"
+            android:text="@string/no_needed_donors_mes"
+            android:layout_marginBottom="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/main_primary_text"
+            android:textSize="25sp"
+            android:text="@string/no_needed_donors_thanks"/>
+        </LinearLayout>
+
+</LinearLayout>

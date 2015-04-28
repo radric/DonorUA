@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
     <!--
  The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but are recommended.
@@ -59,7 +60,7 @@
             android:label="@string/title_activity_centers_on_map"
             android:launchMode="singleInstance"
             android:parentActivityName=".activities.RecipientsActivity"
-            android:theme="@style/SettingsTheme" >
+            android:theme="@style/MainActivityTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.RecipientsActivity" />
@@ -74,20 +75,18 @@
             android:name=".activities.NeedToKnowDetailActivity"
             android:label="@string/title_activity_need_to_know_detail"
             android:parentActivityName=".activities.NeedToKnowActivity"
-            android:theme="@style/DonorUaTheme">
+            android:theme="@style/DonorUaTheme" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ua.andriyantonov.donorua.activities.NeedToKnowActivity" />
         </activity>
         <activity
             android:name=".activities.UserInfoActivity"
-            android:launchMode="singleInstance"
             android:label="@string/drawer_item_user_info"
-            android:theme="@style/MainActivityTheme">
+            android:launchMode="singleInstance"
+            android:theme="@style/MainActivityTheme" >
         </activity>
-
         ==================================
-
         <provider
             android:name=".data.DonorProvider"
             android:authorities="@string/content_authority"
@@ -98,6 +97,7 @@
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
             </intent-filter>
+
             <meta-data
                 android:name="android.accounts.AccountAuthenticator"
                 android:resource="@xml/authenticator" />
@@ -108,10 +108,12 @@
             <intent-filter>
                 <action android:name="android.content.SyncAdapter" />
             </intent-filter>
+
             <meta-data
                 android:name="android.content.SyncAdapter"
                 android:resource="@xml/syncadapter" />
         </service>
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />

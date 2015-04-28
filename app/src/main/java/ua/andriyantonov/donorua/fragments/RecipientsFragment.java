@@ -14,8 +14,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import ua.andriyantonov.donorua.R;
 import ua.andriyantonov.donorua.activities.RecipientsActivity;
 import ua.andriyantonov.donorua.data.DonorContract;
@@ -35,8 +38,10 @@ public class RecipientsFragment extends Fragment implements LoaderManager.Loader
     private final static String RECIPIENT_CHOSEN_KEY = "recipient_chosen_key";
     private static final String POSITION_KEY = "selected_position";
     private int mPosition = ListView.INVALID_POSITION;
-    private ListView mListView;
     public static boolean sRecipientChosen;
+
+    @InjectView(R.id.no_needed_ll) LinearLayout mLinearLayout;
+    @InjectView(R.id.listview_recipients) ListView mListView;
 
     private static final String[] RESIPIENTS_COLUMS = {
             RecipientsEntry.TABLE_NAME + "." + RecipientsEntry._ID,
@@ -79,13 +84,12 @@ public class RecipientsFragment extends Fragment implements LoaderManager.Loader
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_recipients, container, false);
+        ButterKnife.inject(this, rootView);
 
         mRecipientsAdapter = new RecipientsAdapter(getActivity(), null, 0);
         sRecipientChosen = false;
 
-        View rootView = inflater.inflate(R.layout.fragment_recipients, container, false);
-
-        mListView = (ListView) rootView.findViewById(R.id.listview_recipients);
         mListView.setAdapter(mRecipientsAdapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -145,9 +149,19 @@ public class RecipientsFragment extends Fragment implements LoaderManager.Loader
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
         mRecipientsAdapter.swapCursor(cursor);
-
-        if (mPosition != ListView.INVALID_POSITION){
-            mListView.smoothScrollToPosition(mPosition);
+        if (cursor.getCount() == 0){
+            if (mLinearLayout.getVisibility() == View.GONE){
+                mLinearLayout.setVisibility(View.VISIBLE);
+                mListView.setVisibility(View.GONE);
+            }
+        } else {
+            if (mListView.getVisibility() == View.GONE){
+                mListView.setVisibility(View.VISIBLE);
+                mLinearLayout.setVisibility(View.GONE);
+            }
+            if (mPosition != ListView.INVALID_POSITION){
+                mListView.smoothScrollToPosition(mPosition);
+            }
         }
     }
 
